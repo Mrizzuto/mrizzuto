@@ -253,7 +253,8 @@ function rows(dir) {
 const heading = dir => 'Index of ' + (dir === '/' ? '/ ' + (FS.site.title || '') + ' /' : dir);
 function renderList(dir) {
   const list = document.getElementById('list');
-  document.title = 'Index of ' + dir;
+  document.title = '/' + (FS.site.title || '') + dir;
+  //document.title = 'Index of ' + dir;
   const mobile = MOBILE.matches;
   const out = [$('h1', null, heading(dir))];
   if (mobile) {
@@ -283,7 +284,8 @@ function renderList(dir) {
 function renderPage(path) {
   const f = FS.F[path], list = document.getElementById('list');
   if (!f) { renderList('/'); return; }
-  document.title = f.name;
+  document.title = '/' + (FS.site.title || '') + path;
+  //document.title = f.name;
   const back = $('a', { href: '#', onclick: e => { e.preventDefault(); if (internalNav && history.length > 1) history.back(); else go(parent(path)); } }, $('img', { class: 'i', alt: '', src: 'icons/back.png' }), 'Previous');
   list.style.display = 'none';
   let page = document.getElementById('page');
